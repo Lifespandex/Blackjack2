@@ -1,10 +1,10 @@
 package blackjack2;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 public class Deck {
-	private ArrayList<Card> deck;
+	public static ArrayList<Card> deck;
 	
 	public Deck()
 	{
@@ -22,7 +22,7 @@ public class Deck {
 	}
 	
 	//removes the top card from the deck and returns it.
-	public Card deal()
+	public static Card deal()
 	{	
 		if(!isEmpty()) //if the deck isn't empty...
 			return deck.remove(0);
@@ -30,7 +30,7 @@ public class Deck {
 		return null;
 	}
 	
-	public boolean isEmpty()
+	public static boolean isEmpty()
 	{
 		return !(deck.size() > 0);
 	}
@@ -38,17 +38,7 @@ public class Deck {
 	public void shuffle()
 	{
 		//write this method to shuffle the deck.
-		
-		Random random = new Random();
-		ArrayList<Card> tempDeck = new ArrayList<Card>();
-		for (int i = 0; i < deck.size(); i++) {
-			
-			int index = random.nextInt(deckSize());
-			tempDeck.add(deck.get(index));
-			deck.remove(index);
-		}
-		
-		deck = tempDeck;
+		Collections.shuffle(deck);
 	}
 	 
 	public String toString()
@@ -56,7 +46,7 @@ public class Deck {
 		String s = "Deck Contents:\n";
 		
 		for(Card c : deck)
-			s += "\t" + c + "\n";
+			s += "\t" + c.trueValue + "\n";
 		
 		return s;
 	}

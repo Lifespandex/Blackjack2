@@ -17,21 +17,32 @@ public class Bank {
 	
 	//Adjusting Balance and Pot after round
 	public static void win() {
-		System.out.println("You win!");
-		balance += 2 * pot;
-		pot = 0;
-		System.out.println("You now have " + balance + " chips.");
+		if (Driver.finishedRound == false) {
+			System.out.println("\nYou win!");
+			balance += 2 * pot;
+			pot = 0;
+			DealerHand.printHandNoCover();
+			Driver.finishedRound = true;
+		}
 	}
 	
 	public static void tie() {
-		System.out.println("You tied.");
-		balance += pot;
-		pot = 0;
+		if (Driver.finishedRound == false) {
+			System.out.println("\nYou tied.");
+			balance += pot;
+			pot = 0;
+			DealerHand.printHandNoCover();
+			Driver.finishedRound = true;
+		}
 	}
 	
 	public static void lose() {
-		System.out.println("You lose.");
-		pot = 0;
+		if (Driver.finishedRound == false) {
+			System.out.println("\nYou lose.");
+			pot = 0;
+			DealerHand.printHandNoCover();
+			Driver.finishedRound = true;
+		}
 	}
 	
 }

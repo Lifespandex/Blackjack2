@@ -1,15 +1,21 @@
 package blackjack2;
 
 public class Card {
-	private int value, suit;
-	private String cardName;
+	int value, suit;
+	int trueValue;
+
+	String cardName;
 	private String cardTile;
 	private String suitValue;
+	
 	
 	public Card(int value, int suit)
 	{
 		this.value = value;
 		this.suit = suit;
+		
+		this.trueValue = this.trueValue();
+		
 		
 		cardName = genCardName(value, suit);
 	}
@@ -63,4 +69,30 @@ public class Card {
 	{
 		return cardName;
 	}
+	
+	// 
+	public int trueValue() {
+		
+		int returnValue = value;
+		
+		switch(returnValue) {
+			
+		case 1: returnValue = 11;
+		case 11: returnValue = 10;
+		case 12: returnValue = 10;
+		case 13: returnValue = 10;
+		default: returnValue = value;
+		
+		}
+		
+		return returnValue;
+		
+	}
 }
+
+
+
+
+
+
+

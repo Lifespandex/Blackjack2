@@ -3,8 +3,9 @@ package blackjack2;
 
 import java.util.ArrayList;
  
-public class Hand {
+public class DealerHand {
 	private static ArrayList<Card> hand = new ArrayList<Card>();
+	private static String firstCardName;
 	
 	public static void resetHand() {
 		hand = new ArrayList<Card>();
@@ -16,41 +17,52 @@ public class Hand {
 	
 	//Prints the hand, without unneeded stuff
 	public static void printHand() {
-		System.out.print("Your Hand:\t");
+		System.out.print("Dealers Hand:\t");
 		
 		for(int i = 0; i < hand.size(); i++)   {
 			System.out.print((hand.get(i).cardName));
-			// System.out.print((hand.get(i).trueValue));
 		}
 		System.out.print("\n");
 	}
 	
-	// Deals first 2 cards
+	public static void printHandNoCover() { // Prints dealers hand, without covering the first card with X. Only use at end
+		
+		hand.get(0).cardName = firstCardName;
+		System.out.print("Dealers Hand:\t");
+		
+		for(int i = 0; i < hand.size(); i++)   {
+			System.out.print((hand.get(i)));
+		}
+		System.out.print("\n");
+	}
+	
+	
+	//Deals first 2 cards
 	public static void firstDeal() {
-			
+		
 			Card c = Deck.deal();
+			firstCardName = c.cardName;
+			c.cardName = "[X]";
 			hand.add(c);
-			
 			c = Deck.deal();
 			hand.add(c);
-			
 			printHand();
 	}
 
 	public static void hitMe() { 
 		Card c = Deck.deal();
-		System.out.println("\nYou drew: " + c.toString() + "\n");
+		//System.out.println(c.toString());
 		hand.add(c);
-		
 		printHand();
+		
 	}
 	
 	public static int handValue() {
-		int yourScore = 0;
+		int dealerScore = 0;
 		for(int m = 0; m < getHand().size(); m++) { // Checks for 21
-			yourScore += getHand().get(m).trueValue();
+			dealerScore += getHand().get(m).trueValue;
 		}
-		return yourScore;
+		return dealerScore;
 	}
 	
 	public static void aceSwap() {
