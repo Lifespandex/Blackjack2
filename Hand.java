@@ -20,7 +20,6 @@ public class Hand {
 		
 		for(int i = 0; i < hand.size(); i++)   {
 			System.out.print((hand.get(i).cardName));
-			// System.out.print((hand.get(i).trueValue));
 		}
 		System.out.print("\n");
 	}
